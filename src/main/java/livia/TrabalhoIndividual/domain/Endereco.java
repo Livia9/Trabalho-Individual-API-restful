@@ -2,6 +2,8 @@ package livia.TrabalhoIndividual.domain;
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Embeddable
 public class Endereco {
@@ -12,9 +14,11 @@ public class Endereco {
 	private String cidade;
 	
 	@NotBlank(message="Por favor, preencha o campo 'estado'.")
+	@Size(min = 2, max = 2, message = "Estado deve ter 2 caracteres. Ex: RJ")
 	private String estado;
 	
 	@NotBlank(message="Por favor, preencha o campo 'cep'.")
+    @Pattern(regexp = "\\d{5}-\\d{3}", message = "CEP deve estar no formato 12345-678")
 	private String cep;
 	
  public Endereco() {
@@ -50,6 +54,4 @@ public class Endereco {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	
-	
 }

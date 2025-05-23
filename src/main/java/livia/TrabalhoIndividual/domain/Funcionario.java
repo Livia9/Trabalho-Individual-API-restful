@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Funcionario  {
@@ -14,14 +16,15 @@ public class Funcionario  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	@Size(min = 2, max = 100)
 	@NotBlank(message="Por favor, preencha o campo 'nome'.")
+	@Pattern(regexp = "^[A-Za-zÀ-ÿ\\s]+$", message = "O nome não pode conter números ou caracteres especiais.")
 	private String nome;
-
+	
 	@Valid		
 	@Embedded
 	private Endereco endereco;
-	
 	
 	public Funcionario() {
 		

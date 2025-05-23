@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -26,21 +27,16 @@ HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 	}
 	
 ErroResposta erroResposta = new ErroResposta(status.value(),
-"Campos inválidos. Por favor, insira-os novamente.", LocalDateTime.now(), erros);
+"Campos inválidos. Por favor, insira-os novamente!", LocalDateTime.now(), erros);
 
 return super.handleExceptionInternal(ex, erroResposta, headers, status, request);
 }
-// extra
-//
-//@ExceptionHandler(RecursoNaoEncontradoException.class)
-//public ResponseEntity<ErroResposta> tratarRecursoNaoEncontrado(RecursoNaoEncontradoException ex) {
-//    ErroResposta erro = new ErroResposta(
-//        404,
-//        ex.getMessage(),
-//        LocalDateTime.now(),
-//        List.of("Recurso não encontrado.")
-//    );
-//    return ResponseEntity.status(404).body(erro);
-//}
-
-}
+@ExceptionHandler(FuncionarioNaoEncontrado.class)
+public ResponseEntity<ErroResposta> NaoEncontrado(FuncionarioNaoEncontrado ex) {
+    ErroResposta erro = new ErroResposta(
+        404, "O funcionario informado não existe. Tente novamente",
+        LocalDateTime.now(),
+        List.of(ex.getMessage())
+    );
+    return ResponseEntity.status(404).body(erro);
+}}
