@@ -2,7 +2,7 @@
 
 API RESTful desenvolvida em Java com Spring Boot para gerenciamento de funcionários e seus endereços. Implementa um CRUD completo com validações, tratamento de exceções e relacionamento entre entidades.
 
-**Trabalho Individual - Desenvolvimento de API RESTful Residência em TIC Serratec 2025.1 **  
+ **Trabalho Individual - Desenvolvimento de API RESTful Residência em TIC Serratec 2025.1 **  
 *Pontuação: 30/30 pontos*
 
 ## 🛠️ Tecnologias Utilizadas
